@@ -15,10 +15,31 @@ export default function APIDocumentation() {
                A comprehensive backend API for music streaming with automatic user authentication,
                stream management, and voting system. No manual user ID required - everything is handled through your session!
              </p>
-            <div className="bg-gray-800/50 rounded-lg p-4 inline-block">
-              <p className="text-green-400 font-mono text-lg">
-                🚀 Server Running: http://localhost:3000
-              </p>
+            {/* Environment URLs */}
+            <div className="grid md:grid-cols-2 gap-4 max-w-4xl mx-auto mb-6">
+              <div className="bg-gray-800/50 rounded-lg p-4">
+                <p className="text-green-400 font-mono text-lg mb-2">
+                  🏠 Local Development
+                </p>
+                <p className="text-gray-300 text-sm mb-2">
+                  For local testing and development:
+                </p>
+                <code className="text-blue-400 bg-gray-900 px-2 py-1 rounded text-sm">
+                  http://localhost:3000
+                </code>
+              </div>
+              
+              <div className="bg-purple-800/30 rounded-lg p-4 border border-purple-500">
+                <p className="text-purple-400 font-mono text-lg mb-2">
+                  🌐 Live Production
+                </p>
+                <p className="text-gray-300 text-sm mb-2">
+                  For production API access:
+                </p>
+                <code className="text-purple-400 bg-gray-900 px-2 py-1 rounded text-sm">
+                  https://muzer-backend-api.vercel.app/
+                </code>
+              </div>
             </div>
 
             
