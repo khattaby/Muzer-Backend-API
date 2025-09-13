@@ -1,6 +1,6 @@
 import { prismaClient } from "@/app/lib/db";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../../auth/[...nextauth]/route";
+import { authOptions } from "@/app/lib/auth";
 import { NextRequest, NextResponse } from "next/server";
 import z from "zod";
 
@@ -45,7 +45,7 @@ export async function POST(req: NextRequest) {
         status: 200,
       }
     );
-  } catch (e) {
+  } catch (_) {
     return NextResponse.json(
       {
         message: "Error while downvoting",

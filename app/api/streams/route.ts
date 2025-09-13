@@ -2,7 +2,7 @@ import { z } from "zod";
 import { NextRequest, NextResponse } from "next/server";
 import { prismaClient } from "@/app/lib/db";
 import { getServerSession } from "next-auth";
-import { authOptions } from "../auth/[...nextauth]/route";
+import { authOptions } from "@/app/lib/auth";
 import play from "play-dl";
 
 const YT_REGEX =
@@ -68,15 +68,16 @@ export async function POST(req: NextRequest) {
       },
       { status: 201 }
     );
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
-      { message: "Error while adding a stream", error: error.message ?? error },
+      { message: "Error while adding a stream", error: errorMessage },
       { status: 411 }
     );
   }
 }
 
-export async function GET(req: NextRequest) {
+export async function GET() {
   try {
     const session = await getServerSession(authOptions);
     
@@ -99,11 +100,12 @@ export async function GET(req: NextRequest) {
       },
     });
     return NextResponse.json({ data: streams }, { status: 200 });
-  } catch (error: any) {
+  } catch (error: unknown) {
+    const errorMessage = error instanceof Error ? error.message : 'Unknown error';
     return NextResponse.json(
       {
         message: "Error while fetching streams",
-        error: error.message ?? error,
+        error: errorMessage,
       },
       { status: 411 }
     );

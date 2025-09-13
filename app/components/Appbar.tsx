@@ -2,9 +2,8 @@
 import { signIn, signOut, useSession } from "next-auth/react";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
-import { WalletMultiButton } from "@solana/wallet-adapter-react-ui";
 
-export function Appbar({ isSpectator = false }) {
+export function Appbar() {
   const session = useSession();
   const router = useRouter();
 
@@ -19,7 +18,6 @@ export function Appbar({ isSpectator = false }) {
         Muzer
       </div>
       <div className="flex items-center gap-x-2">
-        {isSpectator && <WalletMultiButton />}
         {session.data?.user ? (
           <Button
             className="bg-purple-600 text-white hover:bg-purple-700"
